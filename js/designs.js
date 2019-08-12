@@ -22,35 +22,45 @@ submit.addEventListener("click" ,makeGrid);
 let pixelCanvas =  document.querySelector("#pixelCanvas");
 
 function makeGrid() {
+    //Delete table content if exist 
     pixelCanvas.innerHTML = "";
 
-    let Width = inputWidth.value;
-    let widthText = "";
+    //Instantiate height value
+    const height = inputHeight.value;
 
-        for(let i = 0 ; i <Width;i++ ){
-            widthText += "<td> </td>";
+    //Instantiate height value
+    const width = inputWidth.value;
+
+    //input validation
+    if(height>100 ||height<0 || width>100 || width<0){
+        alert("Invalid inputs , please try agine with different values");
+        return;
+    }
+
+    //for loop to append tr elemets insde table
+    for(let i = 0 ; i < height ; i++){
+        
+       //Create tr element
+       let tr =  document.createElement("tr");
+        
+       //Append tr element inside the 
+       pixelCanvas.appendChild(tr);
+
+       //for loop to append td elemets inside tr element that appended into table 
+        for(let j = 0 ; j<width ;j++){
+        
+        //Create td element
+        let td = document.createElement("td");
+        
+        //add event listner to td taq
+        td.addEventListener("click" , function(){
+            this.style.backgroundColor = colorPicker.value;
+        });
+
+        //append td inside tr elemets
+        tr.appendChild(td);
         }
-    
-    let height =   inputHeight.value;
 
-    for(let i = 0 ; i<height; i++){
-     pixelCanvas.innerHTML +=`<tr>   ${widthText} </tr>`;
-    }
-    addEverlisteners();
+    }    
 }
 
-
-//add everlistener to ever td taq
-function addEverlisteners(){
-
-//colorPicker value
-var color = colorPicker.value;
-
-//select all td taqs
-var tds = document.querySelectorAll("td");
-for(let i = 0 ; i<tds.length ; i++){
-    tds[i].addEventListener('click' , function(){
-        this.style.background = color;
-         });
-    }
-}
