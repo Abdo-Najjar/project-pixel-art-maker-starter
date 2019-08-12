@@ -13,7 +13,7 @@ var inputWidth = document.querySelector("#inputWidth");
 */ 
 
 //select the submit button
-var submit = document.querySelector("#submit");
+var submit = document.querySelector("#submitBtn");
 
 //add the eventlistener to the button
 submit.addEventListener("click" ,makeGrid);
@@ -21,8 +21,12 @@ submit.addEventListener("click" ,makeGrid);
 //select div that has table inside of it
 let pixelCanvas =  document.querySelector("#pixelCanvas");
 
-function makeGrid() {
-    //Delete table content if exist 
+function makeGrid(e) {
+    
+    //To avoid submiting the form
+    e.preventDefault();
+
+    //clean table content if exist 
     pixelCanvas.innerHTML = "";
 
     //Instantiate height value
